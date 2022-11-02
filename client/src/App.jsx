@@ -53,6 +53,10 @@ function App() {
 						}
 					>
 						<Route path="bus" element={<MyBus />} />
+						<Route
+							path="transactions"
+							element={<AllTransactions admin={false} />}
+						/>
 					</Route>
 				</Routes>
 			</Router>

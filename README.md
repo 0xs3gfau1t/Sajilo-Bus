@@ -1,6 +1,8 @@
 # Team segFault
 
-## Members:
+# Sajilo Bus
+
+## Members
 * Bijan Regmi
 * Bimarsha Regmi
 * Paras Poudel

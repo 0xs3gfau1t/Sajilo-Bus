@@ -18,7 +18,9 @@ const buildCard = data => {
 
 	const fs = require("fs")
 	const card = fs.readFileSync(__dirname + "/card.svg").toString()
-	return card.replace("<!-- REPLACE ME -->", svg)
+	return card
+		.replace("<!-- REPLACE ME -->", svg)
+		.replace("<!--card_id -->", data)
 }
 
 module.exports = buildCard

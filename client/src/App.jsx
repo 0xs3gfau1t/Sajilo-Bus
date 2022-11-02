@@ -4,7 +4,17 @@ import Notices from "./pages/Notices"
 
 import { store } from "./redux/store"
 
-import { Landing, Login, MyCard, AdminDash, ManageBus, ScanCard } from "./pages"
+import {
+	Landing,
+	Login,
+	MyCard,
+	AdminDash,
+	ManageBus,
+	AllTransactions,
+	MemberDash,
+	ScanCard,
+	MyBus,
+} from "./pages"
 import PrivateRoute from "./components/PrivateRoute"
 
 import "./App.css"
@@ -29,6 +39,20 @@ function App() {
 						}
 					>
 						<Route path="bus" element={<ManageBus />} />
+						<Route
+							path="transactions"
+							element={<AllTransactions admin={true} />}
+						/>
+					</Route>
+					<Route
+						path="/member/dashboard"
+						element={
+							<PrivateRoute admin={false}>
+								<MemberDash />
+							</PrivateRoute>
+						}
+					>
+						<Route path="bus" element={<MyBus />} />
 					</Route>
 				</Routes>
 			</Router>

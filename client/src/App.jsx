@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { Provider } from "react-redux"
+import Notices from "./pages/Notices"
+
 
 import { store } from "./redux/store"
 
@@ -13,6 +15,7 @@ function App() {
 			<Router>
 				<Routes>
 					<Route path="/" element={<Landing />} />
+					<Route path="/notices" element={<Notices />} />
 					<Route path="/admin" element={<Login member={false} />} />
 					<Route path="/login" element={<Login member={true} />} />
 				</Routes>

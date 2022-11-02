@@ -9,6 +9,8 @@ const buyHandler = async (req, res) => {
 
 	try {
 		const card = await db.card.create({ data: { balance: amount } })
+
+		if (!card) return res.status(400).json({ message: "Invalid card id." })
 		return res.status(200).json({ id: card.id, balance: card.balance })
 	} catch (err) {
 		console.log(err)

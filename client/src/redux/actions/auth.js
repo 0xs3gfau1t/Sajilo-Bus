@@ -13,5 +13,13 @@ export const login = (user_data, member) => dispatch => {
 		delete data["bus_number"]
 		url = "/api/admin/login"
 	}
-	console.log(url, data)
+	axios
+		.post(url, data)
+		.then(res => {
+			dispatch(loginSuccess(res.data.user))
+			dispatch(setAlert("Login Successful", "success"))
+		})
+		.catch(err => {
+			dispatch(setAlert(err.response.data.message, "danger", false))
+		})
 }

@@ -1,4 +1,5 @@
 const db = require("../../prisma")
+const distance = require("../../utils/distance")
 
 const endTripHandler = async (req, res) => {
 	const { lon, lat, bus_number, id } = req.body
@@ -32,8 +33,14 @@ const endTripHandler = async (req, res) => {
 				message: "Not the same bus that you started your trip on.",
 			})
 
-		// [TODO] A proper way to calculate the fare amount.
-		const cost = 100
+		const cost =
+			400 *
+			distance({
+				lat1: card.currentTX.src_lat,
+				lon1: card.currentTX.src_lon,
+				lat2: lat,
+				lon2: lon,
+			})
 
 		await db.transaction.update({
 			where: { id: card.currentTX.id },

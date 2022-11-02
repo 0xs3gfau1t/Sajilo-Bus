@@ -53,3 +53,14 @@ export const verifyAuth = createAsyncThunk(
 		return { isAuthenticated: false, user: "" }
 	}
 )
+
+export const logout = () => dispatch => {
+	axios
+		.get("/api/c/logout", { withCredentials: true })
+		.then(res => {
+			dispatch(logoutSuccess())
+		})
+		.catch(err => {
+			dispatch(setAlert("Failed to logout", "danger"))
+		})
+}

@@ -1,12 +1,15 @@
-import { NavLink } from "react-router-dom"
+import { useState } from "react"
 import { IconContext } from "react-icons"
 import { BsFillPersonFill, BsFillCaretDownFill } from "react-icons/bs"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 
 import HeaderLogo from "./HeaderLogo"
+import { logout } from "../redux/actions/auth"
 
 const TopNav = ({ title }) => {
+	const [showDrop, setDrop] = useState(false)
 	const user = useSelector(state => state.auth.user)
+	const dispatch = useDispatch()
 
 	return (
 		<div className="bg-[#123]">
@@ -20,11 +23,30 @@ const TopNav = ({ title }) => {
 								<BsFillPersonFill />
 								{user}
 							</li>
-							<li>
+							<li
+								onClick={e => setDrop(!showDrop)}
+								className={`${
+									showDrop ? "rotate-180" : ""
+								} transition-transform`}
+							>
 								<BsFillCaretDownFill />
 							</li>
 						</ul>
 					</nav>
+					<ul
+						className={`${
+							showDrop ? "absolute" : "hidden"
+						} bg-white text-black rounded py-1 px-4 mt-16 right-24`}
+					>
+						<li
+							className="cursor-pointer"
+							onClick={e => {
+								dispatch(logout())
+							}}
+						>
+							Logout
+						</li>
+					</ul>
 				</header>
 			</IconContext.Provider>
 		</div>

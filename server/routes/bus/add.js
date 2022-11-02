@@ -2,6 +2,13 @@ const db = require("../../prisma")
 const { hash } = require("bcrypt")
 
 const addBusHandler = async (req, res) => {
+	const { id, admin } = req.tokenObj
+
+	if (!admin)
+		return res
+			.status(400)
+			.json({ message: "Not privileged to perform this task." })
+
 	const { bus_number, owner_name, ph_number, email, password } = req.body
 
 	if (!bus_number || !owner_name || !ph_number || !email || !password)
@@ -10,7 +17,7 @@ const addBusHandler = async (req, res) => {
 	const hashedPassword = await hash(password)
 
 	try {
-		const bus = await db.bus.create({
+		await db.bus.create({
 			data: {
 				bus_number,
 				owner_name,

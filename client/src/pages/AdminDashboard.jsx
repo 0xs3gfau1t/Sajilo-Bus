@@ -1,10 +1,12 @@
-import { Outlet } from "react-router-dom"
-import { TopNav } from "../components/DashNavs"
+import { TopNav, SideNav } from "../components/DashNavs"
 
 const AdminDash = () => {
 	return (
 		<div>
-			<TopNav />
+			<TopNav title={"Admin Dashboard"} />
+			<div className="flex h-[88vh]">
+				<SideNav />
+			</div>
 		</div>
 	)
 }

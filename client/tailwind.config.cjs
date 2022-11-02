@@ -6,6 +6,11 @@ module.exports = {
 			width: {
 				"max": "80%",
 			},
+			colors: {
+				"bg1": "#030413",
+				"black1": "rgb(24, 24, 24)",
+				"khalti": "#4f276e",
+			},
 		},
 	},
 	plugins: [],

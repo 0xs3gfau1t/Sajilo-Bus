@@ -12,9 +12,12 @@ const cardSlice = createSlice({
 		cardInvalid: state => {
 			state.valid = false
 		},
+		newCard: (state, { payload }) => {
+			state.newCard = payload
+		},
 	},
 })
 
-export const { cardInfo, cardInvalid } = cardSlice.actions
+export const { cardInfo, cardInvalid, newCard } = cardSlice.actions
 
 export default cardSlice.reducer

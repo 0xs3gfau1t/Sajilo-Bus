@@ -12,7 +12,7 @@ const PrivateRoute = ({ children, admin }) => {
 	}, [admin])
 
 	if (!verifying && !isAuthenticated) {
-		return <Navigate to={admin ? "/admin" : "/login"} />
+		return <Navigate to={admin ? "/admin" : "/member"} />
 	}
 
 	return children

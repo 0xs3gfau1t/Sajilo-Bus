@@ -25,7 +25,7 @@ const Landing = () => {
 							perferendis enim ducimus sunt eaque esse maiores.
 						</p>
 						<div className="flex gap-4">
-							<Link to="/login">
+							<Link to="/member">
 								<button className="button1 nav-item">
 									Member Login
 								</button>

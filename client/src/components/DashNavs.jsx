@@ -1,9 +1,12 @@
 import { NavLink } from "react-router-dom"
+import { IconContext } from "react-icons"
+import { BsFillPersonFill, BsFillCaretDownFill } from "react-icons/bs"
+import { useSelector } from "react-redux"
+
+import HeaderLogo from "./HeaderLogo"
 
 const TopNav = ({ title }) => {
-	const [showDrop, setDrop] = useState(false)
 	const user = useSelector(state => state.auth.user)
-	const dispatch = useDispatch()
 
 	return (
 		<div className="bg-[#123]">
@@ -17,12 +20,7 @@ const TopNav = ({ title }) => {
 								<BsFillPersonFill />
 								{user}
 							</li>
-							<li
-								onClick={e => setDrop(!showDrop)}
-								className={`${
-									showDrop ? "rotate-180" : ""
-								} transition-transform`}
-							>
+							<li>
 								<BsFillCaretDownFill />
 							</li>
 						</ul>
@@ -32,3 +30,5 @@ const TopNav = ({ title }) => {
 		</div>
 	)
 }
+
+export { TopNav }

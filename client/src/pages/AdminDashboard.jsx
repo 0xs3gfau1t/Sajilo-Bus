@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom"
+import { TopNav } from "../components/DashNavs"
 
 const AdminDash = () => {
 	return (
 		<div>
-			<h1>Ma ta Admin ho ni</h1>
+			<TopNav />
 		</div>
 	)
 }

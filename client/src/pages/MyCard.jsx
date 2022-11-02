@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import { HeaderLogo, FormText, Alert } from "../components"
+import { getBalance } from "../redux/actions/card"
+import { setAlert } from "../redux/actions/misc"
 
 const initialState = {
 	id: "",
@@ -10,14 +12,19 @@ const initialState = {
 const MyCard = () => {
 	const [values, setValues] = useState(initialState)
 	const misc = useSelector(state => state.misc)
-
+	const card = useSelector(state => state.card)
 	const dispatch = useDispatch()
+
 	const handleChange = e => {
 		setValues({ ...values, [e.target.name]: e.target.value })
 	}
 
 	const onSubmit = e => {
 		e.preventDefault()
+		e.preventDefault()
+		if (!values.id) {
+			dispatch(setAlert("Enter valid card id", "danger"))
+		} else dispatch(getBalance(values.id))
 	}
 
 	return (
@@ -39,9 +46,11 @@ const MyCard = () => {
 							Check Info
 						</button>
 					</div>
-					<h2 className="text-center py-1 mt-3 w-max bg-green-700 rounded mx-auto">
-						Available balance : Rs. xxx
-					</h2>
+					{card.balance && (
+						<h2 className="text-center py-1 mt-3 w-max bg-green-700 rounded mx-auto">
+							Available balance : Rs. {card.balance / 100}
+						</h2>
+					)}
 				</form>
 			</div>
 		</div>

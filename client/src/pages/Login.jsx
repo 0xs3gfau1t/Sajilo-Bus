@@ -1,10 +1,10 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Navigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
 import { HeaderLogo, FormText, Alert } from "../components"
 import { setAlert } from "../redux/actions/misc"
-import { login } from "../redux/actions/auth"
+import { login, verifyAuth } from "../redux/actions/auth"
 
 const initialState = {
 	username: "",
@@ -13,8 +13,13 @@ const initialState = {
 const Login = ({ member }) => {
 	const [values, setValues] = useState(initialState)
 	const misc = useSelector(state => state.misc)
+	const auth = useSelector(state => state.auth)
 
 	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(verifyAuth({ admin: !member, alert: false }))
+	}, [member])
 
 	const handleChange = e => {
 		setValues({ ...values, [e.target.name]: e.target.value })
@@ -28,6 +33,15 @@ const Login = ({ member }) => {
 			dispatch(login(values))
 		}
 	}
+
+	if (!auth.verifying && auth.isAuthenticated) {
+		return (
+			<Navigate
+				to={member ? "/member/dashboard/" : "/admin/dashboard/"}
+			/>
+		)
+	}
+
 	return (
 		<div>
 			<form className="form my-[15vh] w-1/4" onSubmit={onSubmit}>

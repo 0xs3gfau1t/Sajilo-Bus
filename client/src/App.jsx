@@ -17,13 +17,13 @@ function App() {
 					<Route path="/" element={<Landing />} />
 					<Route path="/notices" element={<Notices />} />
 					<Route path="/admin" element={<Login member={false} />} />
-					<Route path="/login" element={<Login member={true} />} />
+					<Route path="/member" element={<Login member={true} />} />
 					<Route path="/mycard" element={<MyCard />} />
 					<Route path="/scan" element={<ScanCard />} />
 					<Route
 						path="/admin/dashboard"
 						element={
-							<PrivateRoute admin={false}>
+							<PrivateRoute admin={true}>
 								<AdminDash />
 							</PrivateRoute>
 						}

@@ -6,6 +6,7 @@ import ManageBus from "./ManageBus"
 import AllTransactions from "./AllTransactions"
 import ScanCard from "./ScanCard"
 import MemberDash from "./MemberDashboard"
+import MyBus from "./MyBus"
 
 export {
 	Landing,
@@ -16,4 +17,5 @@ export {
 	AllTransactions,
 	ScanCard,
 	MemberDash,
+	MyBus,
 }

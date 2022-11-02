@@ -13,6 +13,7 @@ import {
 	AllTransactions,
 	MemberDash,
 	ScanCard,
+	MyBus,
 } from "./pages"
 import PrivateRoute from "./components/PrivateRoute"
 
@@ -50,7 +51,9 @@ function App() {
 								<MemberDash />
 							</PrivateRoute>
 						}
-					></Route>
+					>
+						<Route path="bus" element={<MyBus />} />
+					</Route>
 				</Routes>
 			</Router>
 		</Provider>

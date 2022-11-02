@@ -8,7 +8,7 @@ const PrivateRoute = ({ children, admin }) => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		console.log("K vairaxa hya")
+		dispatch(verifyAuth({ admin }))
 	}, [admin])
 
 	if (!verifying && !isAuthenticated) {

@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model transaction {
+    id          Int       @id @default(autoincrement())
+    src_lon     Float
+    src_lat     Float
+    dest_lon    Float?
+    dest_lat    Float?
+    source_time DateTime  @default(now())
+    dest_time   DateTime?
+    paid_amount Int?
+    card        card?     @relation("txlist", fields: [cardId], references: [id], onDelete: SetNull)
+    cardId      String?
+    bus         bus?      @relation(fields: [Bus_number], references: [bus_number], onDelete: SetNull)
+    Bus_number  String?
+    currentCard card?     @relation("current", fields: [currentId], references: [id], onDelete: SetNull)
+    currentId   String?   @unique
+}
+
+model card {
+    id           String        @id @default(uuid())
+    balance      Float         @default(0)
+    transactions transaction[] @relation("txlist")
+    currentTX    transaction?  @relation("current")
+}
+
+model bus {
+    bus_number  String        @id
+    owner_name  String
+    // Storing as string is easier than Int
+    ph_number   String
+    email       String
+    password    String
+    transaction transaction[]
+}
+
+model admin {
+    id       String @id @default(uuid())
+    username String @unique
+    password String
+}

@@ -4,6 +4,7 @@ import { FormText } from "./FormElement"
 import Alert from "./Alert"
 import PrivateRoute from "./PrivateRoute"
 import { TopNav, SideNav } from "./DashNavs"
+import Modal from "./Modal"
 
 export {
 	HeaderLogo,
@@ -13,4 +14,5 @@ export {
 	PrivateRoute,
 	TopNav,
 	SideNav,
+	Modal,
 }

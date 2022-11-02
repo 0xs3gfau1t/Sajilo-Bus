@@ -1,10 +1,16 @@
 const db = require("../../prisma")
 
-const infoHandler = async (req, res) => {
+const balanceEnquiry = async (req, res) => {
 	const { id } = req.query
 
 	try {
-		const card = await db.card.findUnique({ where: { id } })
+		const card = await db.card.findUnique({
+			where: { id },
+			select: { balance: true },
+		})
+
+		if (!card) return res.status(400).json({ message: "Invalid card." })
+
 		return res.status(200).json(card)
 	} catch (err) {
 		console.log(err)

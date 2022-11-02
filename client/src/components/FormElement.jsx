@@ -1,13 +1,15 @@
-const FormText = ({ name, value, handleChange }) => {
+const FormText = ({ type, name, value, handleChange, labelText }) => {
 	return (
 		<div className="mb-4">
 			<label
 				htmlFor={name}
 				className="float-left mb-1 capitalize tracking-wide"
 			>
-				{name}
+				{labelText || name}
 			</label>
+
 			<input
+				type={type}
 				value={value}
 				name={name}
 				onChange={handleChange}

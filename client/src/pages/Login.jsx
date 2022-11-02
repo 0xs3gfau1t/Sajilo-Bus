@@ -13,19 +13,31 @@ const Login = () => {
 	const handleChange = e => {
 		setValues({ ...values, [e.target.name]: e.target.value })
 	}
+	const onSubmit = e => {
+		e.preventDefault()
+		const { password, bus_number, username } = values
+		if (!password && !(bus_number || username)) {
+			console.log("One or more field is missing.")
+		}
+	}
 	return (
 		<div>
-			<form className="form my-[15vh] w-1/4">
+			<form className="form my-[15vh] w-1/4" onSubmit={onSubmit}>
 				<Link to="/">
 					<HeaderLogo />
 				</Link>
 				<h1>Login</h1>
-				<FormText name={"username"} value={values.username} />
+				<FormText
+					name={"username"}
+					value={values.username}
+					handleChange={handleChange}
+				/>
 
 				<FormText
 					name="password"
 					labelText="Password"
 					value={values.password}
+					handleChange={handleChange}
 				/>
 				<button type="submit" className="bg-blue-900">
 					Login

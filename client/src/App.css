@@ -42,6 +42,18 @@ button {
 	background: rgb(1, 66, 15);
 }
 
+.form {
+	@apply mx-auto flex min-w-fit flex-col rounded-lg px-12 py-4;
+	border: 1px solid red;
+	border-top: 7px solid rgb(1, 66, 15);
+	transition: var(--transition);
+}
+h1 {
+	font-size: 2rem !important;
+	text-align: center;
+	margin: 3vh 1vw;
+}
+
 @media only screen and (max-width: 800px) {
 	.landing-right {
 		display: none;

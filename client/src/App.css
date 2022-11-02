@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+	background-color: #030413;
+	color: white;
+	scroll-behavior: smooth;
+}
+.header {
+	@apply w-max mx-auto my-0 text-center flex items-center justify-between px-2;
+	height: 10vh;
+}
+.nav-right {
+	@apply flex items-center;
+}
+.nav-list {
+	@apply flex mr-2;
+}
+.nav-list li {
+	@apply px-4 cursor-pointer font-semibold;
+}
+button {
+	height: 51px;
+	font-size: 16px;
+	line-height: 110%;
+	padding: 1px 12px !important;
+	border-radius: 7px;
+	border: 0px;
+	font-weight: 700 !important;
+	cursor: pointer;
+}
+
+.button1 {
+	background: blue;
+}
+
+.button2 {
+	background: rgb(1, 66, 15);
+}
+
+@media only screen and (max-width: 800px) {
+	.landing-right {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 720px) {
+	.nav-right {
+		display: none;
+	}
+	.logo {
+		margin: 0 auto;
+	}
+	.header {
+		height: 5vh;
+	}
+}

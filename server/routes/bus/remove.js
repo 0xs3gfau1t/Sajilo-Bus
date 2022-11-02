@@ -1,0 +1,19 @@
+const db = require("../../prisma")
+
+const removeBusHandler = async (req, res) => {
+	const { bus_number } = req.body
+	if (!bus_number)
+		return res.status(400).json({ message: "Missing bus number." })
+
+	try {
+		await db.bus.delete({ where: { bus_number } })
+		return res
+			.status(200)
+			.json({ message: "Successfully remove bus user." })
+	} catch (err) {
+		console.log(err)
+		return res.status(500).json({ message: "Something went wrong." })
+	}
+}
+
+module.exports = removeBusHandler

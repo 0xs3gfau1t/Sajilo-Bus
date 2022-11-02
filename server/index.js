@@ -19,7 +19,11 @@ app.use(
 app.use(cookieParser())
 
 const adminHandler = require("./routes/admin")
+const busHandler = require("./routes/bus")
+const cardHandler = require("./routes/card")
 app.use("/api/admin", adminHandler)
+app.use("/api/bus", busHandler)
+app.use("/api/card", cardHandler)
 
 app.get("/api", (req, res) => {
 	return res.send("Hi")

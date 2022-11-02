@@ -4,7 +4,6 @@ import Notices from "./pages/Notices"
 
 import { store } from "./redux/store"
 
-import { Landing, Login, MyCard, AdminDash, ManageBus, ScanCard } from "./pages"
 import {
 	Landing,
 	Login,
@@ -13,6 +12,7 @@ import {
 	ManageBus,
 	AllTransactions,
 	MemberDash,
+	ScanCard,
 } from "./pages"
 import PrivateRoute from "./components/PrivateRoute"
 

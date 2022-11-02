@@ -4,11 +4,8 @@ import MyCard from "./MyCard"
 import AdminDash from "./AdminDashboard"
 import ManageBus from "./ManageBus"
 import AllTransactions from "./AllTransactions"
-<<<<<<< Updated upstream
 import ScanCard from "./ScanCard"
-=======
 import MemberDash from "./MemberDashboard"
->>>>>>> Stashed changes
 
 export {
 	Landing,
@@ -17,9 +14,6 @@ export {
 	AdminDash,
 	ManageBus,
 	AllTransactions,
-<<<<<<< Updated upstream
 	ScanCard,
-=======
 	MemberDash,
->>>>>>> Stashed changes
 }

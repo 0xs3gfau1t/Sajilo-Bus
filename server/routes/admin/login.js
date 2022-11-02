@@ -18,7 +18,8 @@ const loginHandler = async (req, res) => {
 		if (!admin)
 			return res.status(400).json({ message: "Invalid username." })
 
-		if (!compare(password, admin.password))
+		const check = await compare(password, admin.password)
+		if (!check)
 			return res.status(400).json({ message: "Invalid password." })
 
 		const tokenData = { id: admin.id, admin: true }

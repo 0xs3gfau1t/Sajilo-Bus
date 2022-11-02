@@ -14,7 +14,7 @@ const addBusHandler = async (req, res) => {
 	if (!bus_number || !owner_name || !ph_number || !email || !password)
 		return res.status(400).json({ message: "One of the field is missing." })
 
-	const hashedPassword = await hash(password)
+	const hashedPassword = await hash(password, 10)
 
 	try {
 		await db.bus.create({

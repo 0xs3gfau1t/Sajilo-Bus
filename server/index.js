@@ -18,6 +18,9 @@ app.use(
 )
 app.use(cookieParser())
 
+const adminHandler = require("./routes/admin")
+app.use("/api/admin", adminHandler)
+
 app.get("/api", (req, res) => {
 	return res.send("Hi")
 })

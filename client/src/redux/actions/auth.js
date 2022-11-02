@@ -1,0 +1,17 @@
+import axios from "axios"
+
+import { loginSuccess, logoutSuccess } from "../reducers/auth"
+import { setAlert } from "./misc"
+
+export const login = (user_data, member) => dispatch => {
+	let data = JSON.parse(JSON.stringify(user_data))
+	let url = ""
+	if (member) {
+		delete data["username"]
+		url = "/api/bus/login"
+	} else {
+		delete data["bus_number"]
+		url = "/api/admin/login"
+	}
+	console.log(url, data)
+}

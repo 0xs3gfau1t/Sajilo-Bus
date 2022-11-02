@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { HeaderLogo, FormText, Alert } from "../components"
 import { setAlert } from "../redux/actions/misc"
+import { login } from "../redux/actions/auth"
 
 const initialState = {
 	username: "",
@@ -24,7 +25,7 @@ const Login = ({ member }) => {
 		if (!password && !(bus_number || username)) {
 			dispatch(setAlert("One or more field is missing.", "danger"))
 		} else {
-			console.log("Dispatch login action here")
+			dispatch(login(values))
 		}
 	}
 	return (
@@ -34,6 +35,7 @@ const Login = ({ member }) => {
 				<h1>{member ? "Member" : "Admin"} Login</h1>
 				{misc.showAlert && <Alert float={false} />}
 				<FormText
+					type={member ? "text" : "text"}
 					name={member ? "bus_number" : "username"}
 					value={member ? values.bus_number : values.username}
 					labelText={member ? "Bus Number" : ""}

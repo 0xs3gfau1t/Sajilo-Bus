@@ -5,6 +5,6 @@ const loginHandler = require("./login")
 const infoHandler = require("./info")
 
 router.post("/login", loginHandler)
-router.get("/info")
+router.get("/info", infoHandler)
 
 module.exports = router

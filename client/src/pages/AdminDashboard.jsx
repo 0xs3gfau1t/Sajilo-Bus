@@ -1,4 +1,6 @@
-import { TopNav, SideNav } from "../components/DashNavs"
+import { Outlet } from "react-router-dom"
+
+import { TopNav, SideNav } from "../components"
 
 const AdminDash = () => {
 	return (
@@ -6,8 +8,12 @@ const AdminDash = () => {
 			<TopNav title={"Admin Dashboard"} />
 			<div className="flex h-[88vh]">
 				<SideNav />
+				<div className="w-3/4">
+					<Outlet />
+				</div>
 			</div>
 		</div>
 	)
 }
+
 export default AdminDash

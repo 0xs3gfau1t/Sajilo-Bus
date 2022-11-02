@@ -4,7 +4,7 @@ import Notices from "./pages/Notices"
 
 import { store } from "./redux/store"
 
-import { Landing, Login, MyCard, AdminDash } from "./pages"
+import { Landing, Login, MyCard, AdminDash, ManageBus } from "./pages"
 import PrivateRoute from "./components/PrivateRoute"
 
 import "./App.css"
@@ -26,7 +26,9 @@ function App() {
 								<AdminDash />
 							</PrivateRoute>
 						}
-					></Route>
+					>
+						<Route path="bus" element={<ManageBus />} />
+					</Route>
 				</Routes>
 			</Router>
 		</Provider>

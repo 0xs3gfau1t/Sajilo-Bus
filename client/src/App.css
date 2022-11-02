@@ -14,12 +14,15 @@ html {
 .nav-right {
 	@apply flex items-center;
 }
+
 .nav-list {
 	@apply flex mr-2;
 }
+
 .nav-list li {
 	@apply px-4 cursor-pointer font-semibold;
 }
+
 button {
 	height: 51px;
 	font-size: 16px;

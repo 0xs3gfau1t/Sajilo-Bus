@@ -3,6 +3,14 @@ import LandingNav from "./LandingNav"
 import { FormText } from "./FormElement"
 import Alert from "./Alert"
 import PrivateRoute from "./PrivateRoute"
-import { TopNav } from "./DashNavs"
+import { TopNav, SideNav } from "./DashNavs"
 
-export { HeaderLogo, LandingNav, FormText, Alert, PrivateRoute, TopNav }
+export {
+	HeaderLogo,
+	LandingNav,
+	FormText,
+	Alert,
+	PrivateRoute,
+	TopNav,
+	SideNav,
+}

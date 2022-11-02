@@ -18,14 +18,14 @@ const Landing = () => {
 							</h2>
 						</div>
 						<p className="font-normal text-lg font-head">
-							Lorem ipsum dolor sit amet consectetur, adipisicing
-							elit. Ut dignissimos maxime dolores veniam
-							molestias. Dolores cupiditate beatae ducimus
-							molestiae quibusdam, eveniet assumenda! Atque
-							perferendis enim ducimus sunt eaque esse maiores.
+							Hasslefree payment...., adipisicing elit. Ut
+							dignissimos maxime dolores veniam molestias. Dolores
+							cupiditate beatae ducimus molestiae quibusdam,
+							eveniet assumenda! Atque perferendis enim ducimus
+							sunt eaque esse maiores.
 						</p>
 						<div className="flex gap-4">
-							<Link to="/member">
+							<Link to="/login">
 								<button className="button1 nav-item">
 									Member Login
 								</button>

@@ -4,7 +4,8 @@ import Notices from "./pages/Notices"
 
 import { store } from "./redux/store"
 
-import { Landing, Login, MyCard } from "./pages"
+import { Landing, Login, MyCard, AdminDash } from "./pages"
+import PrivateRoute from "./components/PrivateRoute"
 
 import "./App.css"
 
@@ -18,6 +19,14 @@ function App() {
 					<Route path="/admin" element={<Login member={false} />} />
 					<Route path="/login" element={<Login member={true} />} />
 					<Route path="/mycard" element={<MyCard />} />
+					<Route
+						path="/admin/dashboard"
+						element={
+							<PrivateRoute admin={false}>
+								<AdminDash />
+							</PrivateRoute>
+						}
+					></Route>
 				</Routes>
 			</Router>
 		</Provider>

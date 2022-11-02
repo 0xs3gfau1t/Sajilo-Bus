@@ -5,7 +5,7 @@ import { setAlert } from "./misc"
 
 export const getBalance = id => dispatch => {
 	axios
-		.get(`/api/card/info?id=${id}`, { withCredentials: true })
+		.get(`/api/card/balance?id=${id}`, { withCredentials: true })
 		.then(res => {
 			// console.log("res: ", res.data)
 			dispatch(cardInfo(res.data))

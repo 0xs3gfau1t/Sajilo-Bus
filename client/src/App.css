@@ -1,41 +1,61 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+	background-color: #030413;
+	color: white;
+	scroll-behavior: smooth;
+}
+.header {
+	@apply w-max mx-auto my-0 text-center flex items-center justify-between px-2;
+	height: 10vh;
+}
+.nav-right {
+	@apply flex items-center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.nav-list {
+	@apply flex mr-2;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-list li {
+	@apply px-4 cursor-pointer font-semibold;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+button {
+	height: 51px;
+	font-size: 16px;
+	line-height: 110%;
+	padding: 1px 12px !important;
+	border-radius: 7px;
+	border: 0px;
+	font-weight: 700 !important;
+	cursor: pointer;
 }
 
-.card {
-  padding: 2em;
+.button1 {
+	background: blue;
 }
 
-.read-the-docs {
-  color: #888;
+.button2 {
+	background: rgb(1, 66, 15);
+}
+
+@media only screen and (max-width: 800px) {
+	.landing-right {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 720px) {
+	.nav-right {
+		display: none;
+	}
+	.logo {
+		margin: 0 auto;
+	}
+	.header {
+		height: 5vh;
+	}
 }

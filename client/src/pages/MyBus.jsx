@@ -4,6 +4,8 @@ import { AiOutlineNumber, AiOutlineMail, AiFillPhone } from "react-icons/ai"
 import { BsFilePersonFill } from "react-icons/bs"
 
 import { getBus } from "../redux/actions/bus"
+import { setEditing } from "../redux/reducers/bus"
+import { BusEdit, Modal } from "../components"
 
 const MyBus = () => {
 	const bus_num = useSelector(state => state.auth.user)
@@ -36,7 +38,22 @@ const MyBus = () => {
 					<AiOutlineMail />
 					Email &nbsp;: &nbsp; {bus.mybus.email}
 				</li>
+				<button
+					className="button2"
+					onClick={() => dispatch(setEditing(bus.mybus.bus_number))}
+				>
+					Edit
+				</button>
 			</ul>
+			{bus.editing && (
+				<Modal
+					onOutside={() => {
+						dispatch(setEditing(false))
+					}}
+				>
+					<BusEdit />
+				</Modal>
+			)}
 		</div>
 	)
 }

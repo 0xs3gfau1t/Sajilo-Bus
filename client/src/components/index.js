@@ -5,6 +5,7 @@ import Alert from "./Alert"
 import PrivateRoute from "./PrivateRoute"
 import { TopNav, SideNav, MemberSide } from "./DashNavs"
 import Modal from "./Modal"
+import { BusEdit } from "./BusForms"
 
 export {
 	HeaderLogo,
@@ -16,4 +17,5 @@ export {
 	SideNav,
 	Modal,
 	MemberSide,
+	BusEdit,
 }

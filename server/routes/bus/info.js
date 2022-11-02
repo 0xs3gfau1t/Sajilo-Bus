@@ -18,6 +18,10 @@ const infoHandler = async (req, res) => {
 				email: true,
 			},
 		})
+
+		if (!data)
+			return res.status(400).json({ message: "Invalid bus number." })
+
 		return res.status(200).json(data)
 	} catch (err) {
 		console.log(err)

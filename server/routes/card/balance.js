@@ -18,4 +18,4 @@ const balanceEnquiry = async (req, res) => {
 	}
 }
 
-module.exports = infoHandler
+module.exports = balanceEnquiry

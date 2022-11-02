@@ -9,7 +9,7 @@ const initialState = {
 	username: "",
 	password: "",
 }
-const Login = () => {
+const Login = ({ member }) => {
 	const [values, setValues] = useState(initialState)
 	const misc = useSelector(state => state.misc)
 
@@ -31,11 +31,12 @@ const Login = () => {
 		<div>
 			<form className="form my-[15vh] w-1/4" onSubmit={onSubmit}>
 				<HeaderLogo />
-				<h1>Login</h1>
+				<h1>{member ? "Member" : "Admin"} Login</h1>
 				{misc.showAlert && <Alert float={false} />}
 				<FormText
-					name={"username"}
-					value={values.username}
+					name={member ? "bus_number" : "username"}
+					value={member ? values.bus_number : values.username}
+					labelText={member ? "Bus Number" : ""}
 					handleChange={handleChange}
 				/>
 

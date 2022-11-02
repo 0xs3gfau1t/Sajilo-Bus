@@ -13,7 +13,8 @@ function App() {
 			<Router>
 				<Routes>
 					<Route path="/" element={<Landing />} />
-					<Route path="/login" element={<Login />} />
+					<Route path="/admin" element={<Login member={false} />} />
+					<Route path="/login" element={<Login member={true} />} />
 				</Routes>
 			</Router>
 		</Provider>

@@ -18,4 +18,23 @@ const balanceEnquiry = async (req, res) => {
 	}
 }
 
-module.exports = balanceEnquiry
+const balanceLoad = async (req, res) => {
+	var { id, amount, token } = req.body
+
+	amount = Number(amount)
+
+	try {
+		const card = await db.card.update({
+			where: { id },
+			data: { balance: { increment: amount } },
+		})
+		return res
+			.status(200)
+			.json({ message: "Money loaded.", balance: card.balance })
+	} catch (err) {
+		console.log(err)
+		return res.status(500).json({ message: "Something went wrong." })
+	}
+}
+
+module.exports = { balanceEnquiry, balanceLoad }

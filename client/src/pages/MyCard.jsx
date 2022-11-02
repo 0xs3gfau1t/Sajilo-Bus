@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux"
 import KhaltiCheckout from "khalti-checkout-web"
 import SVG from "react-inlinesvg"
 
-import { HeaderLogo, FormText, Alert } from "../components"
-import { getBalance, buyCard } from "../redux/actions/card"
+import { HeaderLogo, FormText, Alert, Modal } from "../components"
+import { getBalance, buyCard, loadCard } from "../redux/actions/card"
 import { setAlert } from "../redux/actions/misc"
 
 const initialState = {
 	id: "",
+	isLoad: false,
+	amount: "10",
 }
 
 const MyCard = () => {
@@ -29,11 +31,14 @@ const MyCard = () => {
 				// hit merchant api for initiating verfication
 				if (!values.isLoad)
 					dispatch(buyCard(payload.amount, payload.token))
+				else
+					dispatch(loadCard(values.id, payload.amount, payload.token))
+				setValues({ ...values, isLoad: false })
 			},
 			// onError handler is optional
 			onError(error) {
 				// handle errors
-				setAlert(`Failed, please try again`, "danger")
+				setAlert(`Transaction Failed, please try again`, "danger")
 			},
 			onClose() {
 				setAlert("Transaction cancelled", "danger")
@@ -60,8 +65,39 @@ const MyCard = () => {
 		checkout.show({ amount: 100 * 100 })
 	}
 
+	const payCard = e => {
+		if (!card.valid && !values.id) {
+			dispatch(
+				setAlert(`Enter valid card id and check info first`, "danger")
+			)
+			return
+		}
+		if (values.amount >= 10 && values.id.length == 36) {
+			let checkout = new KhaltiCheckout(config)
+			checkout.show({ amount: values.amount * 100 })
+		}
+	}
+
 	return (
 		<div>
+			{values.isLoad && (
+				<Modal
+					onOutside={e => {
+						setValues({ ...values, isLoad: false })
+					}}
+				>
+					<h1>Load Balance</h1>
+					<FormText
+						type="number"
+						name="amount"
+						value={values.amount}
+						handleChange={handleChange}
+					/>
+					<button className="bg-khalti w-fit" onClick={payCard}>
+						Pay with Khalti
+					</button>
+				</Modal>
+			)}
 			<div className={`form w-2/5 my-12`}>
 				<form onSubmit={onSubmit}>
 					<HeaderLogo />
@@ -77,6 +113,14 @@ const MyCard = () => {
 					<div className="flex gap-7 w-fit mx-auto">
 						<button type="submit" className="bg-blue-900">
 							Check Info
+						</button>
+						<button
+							onClick={e => {
+								setValues({ ...values, isLoad: true })
+							}}
+							className="bg-green-900"
+						>
+							Load Balance
 						</button>
 					</div>
 					{card.balance && (

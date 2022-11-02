@@ -54,3 +54,21 @@ export const buyCard = (amount, token) => dispatch => {
 			// dispatch(setAlert(err.response.data.message, "danger"))
 		})
 }
+
+export const loadCard = (id, amount, token) => dispatch => {
+	axios
+		.post("/api/card/balance", {
+			id: id,
+			amount: amount,
+			token: token,
+		})
+		.then(res => {
+			console.log("res: ", res.data)
+			dispatch(
+				setAlert(`Rs. ${amount / 100} loaded to your card`, "success")
+			)
+		})
+		.catch(err => {
+			console.log(err.response.data)
+		})
+}

@@ -10,8 +10,10 @@ import {
 	MyCard,
 	AdminDash,
 	ManageBus,
-	ScanCard,
 	AllTransactions,
+	MemberDash,
+	ScanCard,
+	MyBus,
 } from "./pages"
 import PrivateRoute from "./components/PrivateRoute"
 
@@ -41,6 +43,16 @@ function App() {
 							path="transactions"
 							element={<AllTransactions admin={true} />}
 						/>
+					</Route>
+					<Route
+						path="/member/dashboard"
+						element={
+							<PrivateRoute admin={false}>
+								<MemberDash />
+							</PrivateRoute>
+						}
+					>
+						<Route path="bus" element={<MyBus />} />
 					</Route>
 				</Routes>
 			</Router>

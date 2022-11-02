@@ -60,6 +60,13 @@ h1 {
 	}
 }
 
+.alert-danger {
+	background: #842029;
+}
+.alert-success {
+	background: #0f5132;
+}
+
 @media only screen and (max-width: 720px) {
 	.nav-right {
 		display: none;

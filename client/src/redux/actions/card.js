@@ -15,59 +15,57 @@ export const getBalance = id => dispatch => {
 		})
 }
 
-
 export const gotoPage = createAsyncThunk(
-	'card/gotoPage',
-	async({
-		page, reload = false
-	}, { getState, dispatch }) =>{
+	"card/gotoPage",
+	async ({ page, reload = false }, { getState, dispatch }) => {
 		const state = getState()
-		const take = 2
+		const take = 5
 
-		if(state.card.pages[page] && !reload){
-			const amount = Object.keys(state.bus.pages[page]).length
-			return{
+		if (state.card.pages[page] && !reload) {
+			const amount = Object.keys(state.card.pages[page]).length
+			return {
 				success: true,
-				page, 
-				CanPrev: page != 0,
-				canNext : amount == take,
+				page,
+				canPrev: page != 0,
+				canNext: amount == take,
 			}
 		}
 
-		const response = await axios.get("/api/card/list",{
-			params: {skip: page * take, take},
-			withCredentials: true,
-		})
-		.then(res => res.data)
-		.catch(err => {
-			console.log(err)
-			dispatch(
-				setAlert(
-					err.response?.data?.message || "Unknown Error",
-					"danger",
-					true
+		const response = await axios
+			.get("/api/card/list", {
+				params: { skip: page * take, take },
+				withCredentials: true,
+			})
+			.then(res => res.data)
+			.catch(err => {
+				console.log(err)
+				dispatch(
+					setAlert(
+						err.response?.data?.message || "Unknown Error",
+						"danger",
+						true
+					)
 				)
-			)
-		})
+			})
 
-		if(!response) return { success: false}
+		if (!response) return { success: false }
 
 		const amount = Object.keys(response).length
-		if(amount == 0)
-			return{
+		if (amount == 0)
+			return {
 				success: true,
 				canNext: false,
-				canPrev: true,
+				canPrev: page != 0,
 				page: state.bus.currentPage,
 			}
 
-			return{
-				success: true,
-				response,
-				page,
-				canNext: amount == take,
-				canPrev: page != 0,
-			}
+		return {
+			success: true,
+			response,
+			page,
+			canNext: amount == take,
+			canPrev: page != 0,
+		}
 	}
 )
 
@@ -112,20 +110,19 @@ export const buyCard = (amount, token) => dispatch => {
 		})
 }
 
-
 export const delCard = createAsyncThunk(
-	'card/discard',
-	async(id, { dispatch }) =>{
+	"card/discard",
+	async (id, { dispatch }) => {
 		const response = await axios
 			.delete("/api/card/discard", {
 				withCredentials: true,
 				data: { id },
 			})
 			.then(res => {
-				dispatch(setAlert(res.data.message, 'success', false))
+				dispatch(setAlert(res.data.message, "success", false))
 				return res.data
-				})
-			.catch(err =>{
+			})
+			.catch(err => {
 				console.error(err)
 				dispatch(
 					setAlert(
@@ -135,11 +132,10 @@ export const delCard = createAsyncThunk(
 					)
 				)
 			})
-		if (!response) return { success: false}
+		if (!response) return { success: false }
 
 		return { success: true, id }
 	}
-
 )
 
 export const loadCard = (id, amount, token) => dispatch => {

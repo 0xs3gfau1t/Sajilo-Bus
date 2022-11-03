@@ -107,3 +107,26 @@ export const approve = createAsyncThunk(
 		return { success: true }
 	}
 )
+
+export const calculate = createAsyncThunk(
+	"paycheck/caluclate",
+	async ({ id }, { dispatch }) => {
+		await axios
+			.get("/api/paycheck/calc", {
+				params: { id },
+			})
+			.then(res => {
+				dispatch(
+					setAlert(
+						`Total Amount to pay is Rs. ${res.data.total / 100}`
+					)
+				)
+			})
+			.catch(err => {
+				console.log(err)
+				dispatch(
+					setAlert(err?.response?.data?.message ?? "Error", "danger")
+				)
+			})
+	}
+)

@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { approve, gotoPage } from "../redux/actions/paycheck"
+import { approve, calculate, gotoPage } from "../redux/actions/paycheck"
 import { AiOutlineReload, AiFillCheckSquare } from "react-icons/ai"
 import { MdCalculate } from "react-icons/md"
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi"
@@ -81,7 +81,14 @@ const Payout = () => {
 								</td>
 								<td className="border-white border-2 py-3">
 									<div className="flex justify-around">
-										<MdCalculate className="cursor-pointer hover:text-red-500" />
+										<MdCalculate
+											className="cursor-pointer hover:text-red-500"
+											onClick={e => {
+												dispatch(
+													calculate({ id: entry.id })
+												)
+											}}
+										/>
 										<AiFillCheckSquare
 											className="cursor-pointer hover:text-red-500"
 											onClick={e => {

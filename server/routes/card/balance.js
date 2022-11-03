@@ -27,7 +27,7 @@ const balanceLoad = async (req, res) => {
 
 	amount = Number(amount)
 
-	const valid = await verifyPayment(token, amount)
+	const valid = await verifyPayment(amount, token)
 
 	if (!valid)
 		return res

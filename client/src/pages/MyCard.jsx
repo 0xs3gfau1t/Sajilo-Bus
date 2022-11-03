@@ -39,10 +39,12 @@ const MyCard = () => {
 			// onError handler is optional
 			onError(error) {
 				// handle errors
-				setAlert(`Transaction Failed, please try again`, "danger")
+				dispatch(
+					setAlert(`Transaction Failed, please try again`, "danger")
+				)
 			},
 			onClose() {
-				setAlert("Transaction cancelled", "danger")
+				dispatch(setAlert("Transaction cancelled", "danger"))
 			},
 		},
 	}

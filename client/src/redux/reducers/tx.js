@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { searchTx, payout } from "../actions/tx"
+import { searchTx } from "../actions/tx"
 
 // bus: {[bus_number]: {[page_number]: [transaction_list]}}
 // card: {[card_id]: {[page_number]: [transaction_list]}}

@@ -1,17 +1,21 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Alert } from "../components"
+import { Alert, Modal } from "../components"
 import { setAlert } from "../redux/actions/misc"
-import { gotoPage } from "../redux/actions/card"
+import { gotoPage, delCard } from "../redux/actions/card"
 import {
+	AiFillDelete,
+	AiOutlineLoading3Quarters,
 	AiOutlineReload,
 } from "react-icons/ai"
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi"
+import { setDeleting } from "../redux/reducers/card"
+
 
 const Cards = () => {
 	const dispatch = useDispatch()
-    const { pages, currentPage, canNext, canPrev} = useSelector(state => state.card)
+    const { pages, currentPage, canNext, canPrev, deleting } = useSelector(state => state.card)
 	const { showAlert } = useSelector(state => state.misc)
 	const [quantity, setQuantity] = useState(0)
 
@@ -124,11 +128,12 @@ const Cards = () => {
 					Reload <AiOutlineReload />{" "}
 				</span>
 			</div>
-			<table className="w-full">
+			<table className=" w-full ">
 				<thead>
-					<tr>
+					<tr className="py-2 px-1">
 						<th className="border-white border-2">ID</th>
 						<th className="border-white border-2">Balance</th>
+                        <th className="border-white border-2">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -145,7 +150,7 @@ const Cards = () => {
 												.balance
 										}
 									</td>
-									{/* <td className="border-white border-2">
+									<td className="border-white border-2">
 										<div className="flex justify-around">
 											<AiFillDelete
 												className="cursor-pointer hover:text-red-500"
@@ -156,12 +161,44 @@ const Cards = () => {
 												}
 											/>
 										</div>
-									</td> */}
+									</td>
 								</tr>
 							)
 						})}
 				</tbody>
 			</table>
+            {deleting ? (
+                <Modal
+                onOutside={() =>{
+                    dispatch(setDeleting(false))
+                }}>
+                    <div className="text-white m-3 font-semibold">
+                        Are you sure you wnat to delete this id?
+                    </div>
+                    <div className = 'flex justify-end gap-2 m-2'>
+                    <button
+							className="bg-red-900 hover:bg-red-800 flex items-center justify-between gap-1"
+							onClick={() => dispatch(delCard(deleting))}
+						>
+							{deleting == "failed" ? "Retry" : "Confirm"}
+							{deleting == "deleting" ? (
+								<AiOutlineLoading3Quarters className="text-white animate-spin" />
+							) : (
+								<AiFillDelete />
+							)}
+					</button>
+					<button
+							className="bg-green-900 hover:bg-green-800"
+							onClick={() => dispatch(setDeleting(false))}
+					>
+							Cancel
+					</button>
+                    </div>
+                </Modal>
+            ) : null}
+            <div className="fixed w-1/4 right-1 bottom-1 z-[100]">
+				{showAlert ? <Alert float={false} /> : null}
+			</div>
 		</>
 	)
 }

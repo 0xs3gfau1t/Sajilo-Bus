@@ -113,6 +113,34 @@ export const buyCard = (amount, token) => dispatch => {
 }
 
 
+export const delCard = createAsyncThunk(
+	'card/discard',
+	async(id, { dispatch }) =>{
+		const response = await axios
+			.delete("/api/card/discard", {
+				withCredentials: true,
+				data: { id },
+			})
+			.then(res => {
+				dispatch(setAlert(res.data.message, 'success', false))
+				return res.data
+				})
+			.catch(err =>{
+				console.error(err)
+				dispatch(
+					setAlert(
+						err.response?.data?.message || "Unknown Error",
+						"danger",
+						true
+					)
+				)
+			})
+		if (!response) return { success: false}
+
+		return { success: true, id }
+	}
+
+)
 
 export const loadCard = (id, amount, token) => dispatch => {
 	axios

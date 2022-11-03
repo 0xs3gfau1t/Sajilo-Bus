@@ -1,7 +1,7 @@
 const db = require("../../prisma")
 
 const discardHandler = async (req, res) => {
-	const { id } = req.query
+	const { id } = req.body
 
 	try {
 		const card = await db.card.delete({ where: { id } })

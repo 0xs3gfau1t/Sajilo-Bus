@@ -1,19 +1,25 @@
 import { useState } from "react"
 import QrReader from "react-web-qr-reader"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
-import { HeaderLogo } from "../components"
+import { setAlert } from "../redux/actions/misc"
+import { HeaderLogo, Alert } from "../components"
 
 import { trip } from "../redux/actions/card"
 
 const ScanCard = () => {
 	const [tripStatus, setTripStatus] = useState("")
 	const [LastID, setLastID] = useState(null)
+	const misc = useSelector(state => state.misc)
+
 	const dispatch = useDispatch()
+
 	const bus_number = import.meta.env.SAJILO_BUS_NUMBER
 
 	const handleScan = async data => {
 		if (!data || data.data == LastID) return
+		if (!tripStatus) dispatch(setAlert("Select trip Begin/End", "danger"))
+
 		setLastID(data.data)
 
 		//if no permission to get location
@@ -23,11 +29,9 @@ const ScanCard = () => {
 		}
 
 		const getCords = async () => {
-			console.log("Get cords")
 			const pos = await new Promise((resolve, reject) => {
 				navigator.geolocation.getCurrentPosition(resolve, reject)
 			})
-			console.log("Got cords")
 
 			return {
 				lon: pos.coords.longitude,
@@ -35,7 +39,6 @@ const ScanCard = () => {
 			}
 		}
 
-		console.log("Calling getCords")
 		const { lat, lon } = await getCords()
 		console.log("Called getCords", lat, lon)
 
@@ -50,6 +53,7 @@ const ScanCard = () => {
 			<HeaderLogo />
 			<h1 className="font-head">Welcome to Sajilo Bus</h1>
 			<h2 className="text-center text-3xl">Use your card to scan</h2>
+			{misc.showAlert && <Alert float={false} />}
 			<p className="text-lg pt-4 text-center text-[red]">
 				QR Code on the card should be inside the red rectangular box
 			</p>

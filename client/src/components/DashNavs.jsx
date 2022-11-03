@@ -82,14 +82,14 @@ const SideNav = () => {
 				</li>
 			</NavLink>
 			<NavLink
-				to="newcard"
+				to="cards"
 				className={({ isActive }) =>
 					isActive ? "bg-sky-600 font-bold" : ""
 				}
 			>
 				<li>
 					<MdQrCode2 />
-					Issue card
+					Cards
 				</li>
 			</NavLink>
 			<NavLink

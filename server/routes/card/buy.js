@@ -9,8 +9,8 @@ const buyHandler = async (req, res) => {
 
 	amount = Number(amount)
 
-	const valid = verifyPayment(amount, token)
-
+	const valid = await verifyPayment(amount, token)
+	console.log("Validity: ", valid)
 	if (!valid)
 		return res
 			.status(400)

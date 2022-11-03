@@ -8,6 +8,7 @@ import {
 	Landing,
 	Login,
 	MyCard,
+	Cards,
 	AdminDash,
 	ManageBus,
 	AllTransactions,
@@ -45,6 +46,7 @@ function App() {
 							element={<AllTransactions admin={true} />}
 						/>
 						<Route path="payout" element={<Payout />} />
+						<Route path="cards" element={<Cards />} />
 					</Route>
 					<Route
 						path="/member/dashboard"

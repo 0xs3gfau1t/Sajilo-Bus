@@ -11,9 +11,14 @@ import {
 	AdminDash,
 	ManageBus,
 	AllTransactions,
+<<<<<<< Updated upstream
+	Payout,
 	MemberDash,
 	ScanCard,
 	MyBus,
+=======
+	MemberDash,
+>>>>>>> Stashed changes
 } from "./pages"
 import PrivateRoute from "./components/PrivateRoute"
 
@@ -43,6 +48,8 @@ function App() {
 							path="transactions"
 							element={<AllTransactions admin={true} />}
 						/>
+<<<<<<< Updated upstream
+						<Route path="payout" element={<Payout />} />
 					</Route>
 					<Route
 						path="/member/dashboard"
@@ -57,7 +64,17 @@ function App() {
 							path="transactions"
 							element={<AllTransactions admin={false} />}
 						/>
+=======
+>>>>>>> Stashed changes
 					</Route>
+					<Route
+						path="/member/dashboard"
+						element={
+							<PrivateRoute admin={false}>
+								<MemberDash />
+							</PrivateRoute>
+						}
+					></Route>
 				</Routes>
 			</Router>
 		</Provider>

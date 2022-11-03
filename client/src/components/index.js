@@ -3,7 +3,9 @@ import LandingNav from "./LandingNav"
 import { FormText } from "./FormElement"
 import Alert from "./Alert"
 import PrivateRoute from "./PrivateRoute"
-import { TopNav, SideNav } from "./DashNavs"
+import { TopNav, SideNav, MemberSide } from "./DashNavs"
+import Modal from "./Modal"
+import { BusEdit } from "./BusForms"
 
 export {
 	HeaderLogo,
@@ -13,4 +15,7 @@ export {
 	PrivateRoute,
 	TopNav,
 	SideNav,
+	Modal,
+	MemberSide,
+	BusEdit,
 }

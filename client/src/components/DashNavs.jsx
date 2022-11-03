@@ -118,4 +118,33 @@ const SideNav = () => {
 	)
 }
 
-export { TopNav, SideNav }
+const MemberSide = () => {
+	return (
+		<ul className="dash-list flex flex-col gap-8 px-1 py-24 bg-black1 w-1/5">
+			<NavLink
+				to="bus"
+				className={({ isActive }) =>
+					isActive ? "bg-sky-600 font-bold" : ""
+				}
+			>
+				<li>
+					<FaBusAlt />
+					My Bus
+				</li>
+			</NavLink>
+			<NavLink
+				to="transactions"
+				className={({ isActive }) =>
+					isActive ? "bg-sky-600 font-bold" : ""
+				}
+			>
+				<li>
+					<FaMoneyCheckAlt />
+					My Transactions
+				</li>
+			</NavLink>
+		</ul>
+	)
+}
+
+export { TopNav, SideNav, MemberSide }

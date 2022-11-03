@@ -9,6 +9,7 @@ import { login, verifyAuth } from "../redux/actions/auth"
 const initialState = {
 	username: "",
 	password: "",
+	bus_number: "",
 }
 const Login = ({ member }) => {
 	const [values, setValues] = useState(initialState)
@@ -30,7 +31,7 @@ const Login = ({ member }) => {
 		if (!password && !(bus_number || username)) {
 			dispatch(setAlert("One or more field is missing.", "danger"))
 		} else {
-			dispatch(login(values))
+			dispatch(login(values, member))
 		}
 	}
 

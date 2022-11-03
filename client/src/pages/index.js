@@ -7,10 +7,12 @@ import AllTransactions from "./AllTransactions"
 import ScanCard from "./ScanCard"
 import MemberDash from "./MemberDashboard"
 import MyBus from "./MyBus"
+import Cards from "./Cards"
 
 export {
 	Landing,
 	Login,
+	Cards,
 	MyCard,
 	AdminDash,
 	ManageBus,

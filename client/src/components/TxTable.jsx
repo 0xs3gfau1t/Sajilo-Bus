@@ -47,7 +47,7 @@ const TxTable = () => {
 			</div>
 			<table className="w-full">
 				<thead>
-					<tr>
+					<tr className = "text-center">
 						<th className="border-white border-2" rowSpan={2}>
 							ID
 						</th>
@@ -78,8 +78,8 @@ const TxTable = () => {
 				<tbody>
 					{tx[tx.mode]?.[tx.id]?.[tx.currentPage]?.map(
 						transaction => (
-							<tr key={transaction.id}>
-								<td className="border-white border-2">
+							<tr className = "text-center" key={transaction.id}>
+								<td className="border-white border-2 py-3">
 									{transaction.id}
 								</td>
 								<td className="border-white border-2">

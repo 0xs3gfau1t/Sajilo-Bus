@@ -29,6 +29,7 @@ const MyCard = () => {
 		"eventHandler": {
 			onSuccess(payload) {
 				// hit merchant api for initiating verfication
+				// console.log("Payload: ", payload.amount, payload.token)
 				if (!values.isLoad)
 					dispatch(buyCard(payload.amount, payload.token))
 				else

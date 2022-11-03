@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { gotoPage, requestPaycheck } from "../actions/paycheck"
+import { approve, gotoPage, requestPaycheck } from "../actions/paycheck"
 
 const initialState = {
 	request: false,

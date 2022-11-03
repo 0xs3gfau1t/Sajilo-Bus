@@ -11,13 +11,13 @@ const approveHandler = async (req, res) => {
 				requestDate: true,
 				bus_number: { select: { bus_number: true, lastPayed: true } },
 				payed: true,
+				currentBusId: true,
 			},
 		})
 
 		if (!paycheck) return res.status(400).json({ message: "Invalid id" })
 
-		console.log(paycheck)
-		if (paycheck.payed)
+		if (!paycheck.currentBusId)
 			return res
 				.status(400)
 				.json({ message: "This request has already been payed off." })
@@ -53,7 +53,7 @@ const approveHandler = async (req, res) => {
 
 		return res
 			.status(200)
-			.json({ message: "Successfully paid paycheck.", payed: total })
+			.json({ message: `Successfully paid Rs. ${total / 100}.` })
 	} catch (err) {
 		console.log(err)
 		return res.status(500).json({ message: "Something went wrong." })

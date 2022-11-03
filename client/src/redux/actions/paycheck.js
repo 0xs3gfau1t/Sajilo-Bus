@@ -13,14 +13,17 @@ export const requestPaycheck = createAsyncThunk(
 				{ withCredentials: true }
 			)
 
-			dispatch(setAlert(response.data?.message ?? "Success", "success"))
+			dispatch(
+				setAlert(response.data?.message ?? "Success", "success", true)
+			)
 			return { success: true }
 		} catch (err) {
 			console.log(err)
 			dispatch(
 				setAlert(
 					err.response?.data?.message ?? "Unknown error.",
-					"danger"
+					"danger",
+					true
 				)
 			)
 			return { success: false }
@@ -75,5 +78,32 @@ export const gotoPage = createAsyncThunk(
 			canNext: amount == take,
 			canPrev: page != 0,
 		}
+	}
+)
+
+export const approve = createAsyncThunk(
+	"paycheck/approve",
+	async ({ id }, { dispatch }) => {
+		const response = await axios
+			.post("/api/paycheck/approve", { id }, { withCredentials: true })
+			.then(res => {
+				dispatch(
+					setAlert(res.data?.message ?? "Success", "success", true)
+				)
+				return res.data
+			})
+			.catch(err => {
+				console.log(err)
+				dispatch(
+					setAlert(
+						err?.response?.data?.message ?? "Failed",
+						"danger",
+						true
+					)
+				)
+			})
+
+		if (!response) return { success: false }
+		return { success: true }
 	}
 )

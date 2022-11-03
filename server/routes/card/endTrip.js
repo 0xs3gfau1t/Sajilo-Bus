@@ -35,12 +35,14 @@ const endTripHandler = async (req, res) => {
 
 		const cost =
 			400 *
-			distance({
-				lat1: card.currentTX.src_lat,
-				lon1: card.currentTX.src_lon,
-				lat2: lat,
-				lon2: lon,
-			})
+			Math.floor(
+				distance({
+					lat1: card.currentTX.src_lat,
+					lon1: card.currentTX.src_lon,
+					lat2: lat,
+					lon2: lon,
+				})
+			)
 
 		await db.transaction.update({
 			where: { id: card.currentTX.id },

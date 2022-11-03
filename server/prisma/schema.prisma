@@ -44,7 +44,7 @@ model bus {
     transaction     transaction[]
     paycheck        paycheck[]    @relation("paycheckList")
     pendingPayCheck paycheck?     @relation("pendingPaycheck")
-    lastPayed       DateTime?
+    lastPayed       DateTime?     @default(now())
 }
 
 model paycheck {

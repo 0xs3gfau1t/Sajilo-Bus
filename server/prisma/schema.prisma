@@ -35,13 +35,26 @@ model card {
 }
 
 model bus {
-    bus_number  String        @id
-    owner_name  String
+    bus_number      String        @id
+    owner_name      String
     // Storing as string is easier than Int
-    ph_number   String
-    email       String
-    password    String
-    transaction transaction[]
+    ph_number       String
+    email           String
+    password        String
+    transaction     transaction[]
+    paycheck        paycheck[]    @relation("paycheckList")
+    pendingPayCheck paycheck?     @relation("pendingPaycheck")
+    lastPayed       DateTime?     @default(now())
+}
+
+model paycheck {
+    id            Int      @id @default(autoincrement())
+    bus_number    bus      @relation("paycheckList", fields: [busBus_number], references: [bus_number])
+    busBus_number String
+    requestDate   DateTime @default(now())
+    payed         Float    @default(0)
+    currentBus    bus?     @relation("pendingPaycheck", fields: [currentBusId], references: [bus_number], onDelete: SetNull)
+    currentBusId  String?  @unique
 }
 
 model admin {

@@ -11,14 +11,10 @@ import {
 	AdminDash,
 	ManageBus,
 	AllTransactions,
-<<<<<<< Updated upstream
 	Payout,
 	MemberDash,
 	ScanCard,
 	MyBus,
-=======
-	MemberDash,
->>>>>>> Stashed changes
 } from "./pages"
 import PrivateRoute from "./components/PrivateRoute"
 

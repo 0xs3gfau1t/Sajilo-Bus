@@ -37,7 +37,7 @@ const txSlice = createSlice({
 				state.id = payload.id
 			}
 		})
-		builder.addCase(searchTx.fulfilled, (state, { payload }) => {
+		builder.addCase(payout.fulfilled, (state, { payload }) => {
 			if (payload.success) {
 				if (payload.transaction)
 					state[state.mode][payload.id] = {

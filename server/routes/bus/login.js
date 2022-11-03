@@ -14,7 +14,7 @@ const loginHandler = async (req, res) => {
 		if (!bus)
 			return res.status(400).json({ message: "Invalid bus number." })
 
-		if (!compare(password, bus.password))
+		if (!(await compare(password, bus.password)))
 			return res.status(400).json({ message: "Invalid password." })
 
 		const tokenData = { id: bus_number }

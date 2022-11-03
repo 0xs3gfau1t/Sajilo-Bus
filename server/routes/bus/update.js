@@ -1,3 +1,4 @@
+const { hash } = require("bcrypt")
 const db = require("../../prisma")
 
 const updateHandler = async (req, res) => {

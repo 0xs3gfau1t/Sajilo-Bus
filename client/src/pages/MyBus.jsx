@@ -5,11 +5,13 @@ import { BsFilePersonFill } from "react-icons/bs"
 
 import { getBus } from "../redux/actions/bus"
 import { setEditing } from "../redux/reducers/bus"
-import { BusEdit, Modal } from "../components"
+import { Alert, BusEdit, Modal } from "../components"
+import { requestPaycheck } from "../redux/actions/paycheck"
 
 const MyBus = () => {
 	const bus_num = useSelector(state => state.auth.user)
 	const bus = useSelector(state => state.bus)
+	const { showAlert } = useSelector(state => state.misc)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -38,12 +40,28 @@ const MyBus = () => {
 					<AiOutlineMail />
 					Email &nbsp;: &nbsp; {bus.mybus.email}
 				</li>
-				<button
-					className="button2"
-					onClick={() => dispatch(setEditing(bus.mybus.bus_number))}
-				>
-					Edit
-				</button>
+				<div className="flex w-full justify-evenly">
+					<button
+						className="button2 w-1/5"
+						onClick={() =>
+							dispatch(setEditing(bus.mybus.bus_number))
+						}
+					>
+						Edit
+					</button>
+					<button
+						className="button2 w-1/5"
+						onClick={() => {
+							dispatch(
+								requestPaycheck({
+									bus_number: bus.mybus.bus_number,
+								})
+							)
+						}}
+					>
+						Request Paycheck
+					</button>
+				</div>
 			</ul>
 			{bus.editing && (
 				<Modal
@@ -54,6 +72,9 @@ const MyBus = () => {
 					<BusEdit />
 				</Modal>
 			)}
+			<div className="fixed w-1/4 right-1 bottom-1 z-[100]">
+				{showAlert ? <Alert float={false} /> : null}
+			</div>
 		</div>
 	)
 }

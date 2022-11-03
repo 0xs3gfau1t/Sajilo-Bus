@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { requestPaycheck } from "../actions/paycheck"
+import { gotoPage, requestPaycheck } from "../actions/paycheck"
 
 const initialState = {
 	request: false,
+	pages: {},
+	currentPage: 0,
+	canNext: true,
+	canPrev: false,
 }
 
 const paycheckSlice = createSlice({
@@ -15,6 +19,15 @@ const paycheckSlice = createSlice({
 		builder.addCase(requestPaycheck.fulfilled, (state, { payload }) => {
 			if (payload.success) state.request = "success"
 			else state.request = "failed"
+		})
+
+		builder.addCase(gotoPage.fulfilled, (state, { payload }) => {
+			if (payload.success) {
+				if (payload.data) state.pages[payload.page] = payload.data
+				state.canNext = payload.canNext
+				state.canPrev = payload.canPrev
+				state.currentPage = payload.page
+			}
 		})
 	},
 })

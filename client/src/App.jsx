@@ -48,7 +48,6 @@ function App() {
 							path="transactions"
 							element={<AllTransactions admin={true} />}
 						/>
-<<<<<<< Updated upstream
 						<Route path="payout" element={<Payout />} />
 					</Route>
 					<Route
@@ -64,8 +63,6 @@ function App() {
 							path="transactions"
 							element={<AllTransactions admin={false} />}
 						/>
-=======
->>>>>>> Stashed changes
 					</Route>
 					<Route
 						path="/member/dashboard"

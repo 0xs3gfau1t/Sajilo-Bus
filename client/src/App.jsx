@@ -12,6 +12,7 @@ import {
 	AdminDash,
 	ManageBus,
 	AllTransactions,
+	Payout,
 	MemberDash,
 	ScanCard,
 	MyBus,
@@ -44,6 +45,7 @@ function App() {
 							path="transactions"
 							element={<AllTransactions admin={true} />}
 						/>
+						<Route path="payout" element={<Payout />} />
 						<Route path="cards" element={<Cards />} />
 					</Route>
 					<Route
@@ -60,6 +62,14 @@ function App() {
 							element={<AllTransactions admin={false} />}
 						/>
 					</Route>
+					<Route
+						path="/member/dashboard"
+						element={
+							<PrivateRoute admin={false}>
+								<MemberDash />
+							</PrivateRoute>
+						}
+					></Route>
 				</Routes>
 			</Router>
 		</Provider>

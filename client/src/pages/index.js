@@ -20,4 +20,5 @@ export {
 	ScanCard,
 	MemberDash,
 	MyBus,
+	Payout,
 }

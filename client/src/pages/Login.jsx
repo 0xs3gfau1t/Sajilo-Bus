@@ -59,6 +59,7 @@ const Login = ({ member }) => {
 
 				<FormText
 					name="password"
+					type="password"
 					labelText="Password"
 					value={values.password}
 					handleChange={handleChange}

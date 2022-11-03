@@ -8,6 +8,7 @@ import ScanCard from "./ScanCard"
 import MemberDash from "./MemberDashboard"
 import MyBus from "./MyBus"
 import Cards from "./Cards"
+import Payout from "./Payout"
 
 export {
 	Landing,

@@ -11,7 +11,6 @@ const initialState = {
 	currentPage: 0,
 	canNext: true,
 	canPrev: false,
-	payout: {},
 }
 
 const txSlice = createSlice({
@@ -24,20 +23,6 @@ const txSlice = createSlice({
 	},
 	extraReducers: builder => {
 		builder.addCase(searchTx.fulfilled, (state, { payload }) => {
-			if (payload.success) {
-				if (payload.transaction)
-					state[state.mode][payload.id] = {
-						...state[state.mode][payload.id],
-						[payload.page]: payload.transaction,
-					}
-
-				state.canNext = payload.canNext
-				state.canPrev = payload.canPrev
-				state.currentPage = payload.page
-				state.id = payload.id
-			}
-		})
-		builder.addCase(payout.fulfilled, (state, { payload }) => {
 			if (payload.success) {
 				if (payload.transaction)
 					state[state.mode][payload.id] = {

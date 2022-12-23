@@ -57,8 +57,16 @@ const MyCard = () => {
 		e.preventDefault()
 		e.preventDefault()
 		if (!values.id) {
-			dispatch(setAlert("Enter valid card id", "danger"))
-		} else dispatch(getBalance(values.id))
+			fetch("http://192.168.45.6:5000/card")
+				.then(res => res.json())
+				.then(data => dispatch(getBalance(data.uid)))
+				.catch(err => {
+					console.error(err)
+					dispatch(setAlert("Enter valid card id", "danger"))
+				})
+		} else {
+			dispatch(getBalance(values.id))
+		}
 	}
 
 	const newCard = e => {

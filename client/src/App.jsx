@@ -20,6 +20,7 @@ import {
 import PrivateRoute from "./components/PrivateRoute"
 
 import "./App.css"
+import Track from "./components/Track"
 
 function App() {
 	return (
@@ -47,6 +48,7 @@ function App() {
 						/>
 						<Route path="payout" element={<Payout />} />
 						<Route path="cards" element={<Cards />} />
+						<Route path="track" element={<Track />} />
 					</Route>
 					<Route
 						path="/member/dashboard"

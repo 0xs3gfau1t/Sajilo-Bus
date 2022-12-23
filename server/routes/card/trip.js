@@ -1,6 +1,6 @@
 const db = require("../../prisma")
-const distance = require("../../utils/distance")
 const TripHandler = async (req, res) => {
+	console.log(req.body)
 	var {
 		src_lon,
 		src_lat,
@@ -10,30 +10,30 @@ const TripHandler = async (req, res) => {
 		dest_time,
 		cardId,
 		Bus_number,
+		distance,
 	} = req.body
 
 	try {
-		const paid_amount =
-			400 *
-			Math.floor(
-				distance({
-					lat1: src_lat,
-					lon1: src_lon,
-					lat2: dest_lat,
-					lon2: dest_lon,
-				})
-			)
+		distance = Number(distance)
+		var paid_amount = 0
+		paid_amount += 20 * 100
+		distance -= 3
+		distance = Math.max(0, distance)
+		paid_amount += distance * 5 * 100
+		paid_amount = Math.floor(paid_amount)
+
 		await db.card.update({
 			where: { id: cardId },
 			data: {
+				balance: { decrement: paid_amount },
 				transactions: {
 					create: {
 						src_lon,
 						src_lat,
 						dest_lon,
 						dest_lat,
-						source_time,
-						dest_time,
+						source_time: new Date(source_time),
+						dest_time: new Date(dest_time),
 						paid_amount,
 						Bus_number,
 					},

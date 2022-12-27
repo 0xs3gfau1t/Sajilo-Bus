@@ -86,3 +86,8 @@ h1 {
 		height: 5vh;
 	}
 }
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}

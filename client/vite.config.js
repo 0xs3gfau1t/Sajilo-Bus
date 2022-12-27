@@ -9,6 +9,7 @@ export default ({ mode }) => {
 		plugins: [react()],
 		envPrefix: "SAJILO",
 		server: {
+		  host: true,
 			open: true,
 			port: env.PORT,
 			proxy: {

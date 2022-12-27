@@ -11,6 +11,7 @@ const discardHandler = require("./discard")
 const beginTripHandler = require("./beginTrip")
 const endTripHandler = require("./endTrip")
 const listHandler = require('./list')
+const TripHandler = require("./trip")
 
 
 router.post("/buy", buyHandler)
@@ -23,6 +24,7 @@ router.delete("/discard", discardHandler)
 
 router.post("/beginTrip", beginTripHandler)
 router.post("/endTrip", endTripHandler)
+router.post("/trip", TripHandler)
 
 router.get("/list", authenticator, listHandler)
 router.get("/tx", TxHandler)

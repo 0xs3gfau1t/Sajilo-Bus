@@ -114,6 +114,17 @@ const SideNav = () => {
 					Payout{" "}
 				</li>
 			</NavLink>
+			<NavLink
+				to="track"
+				className={({ isActive }) =>
+					isActive ? "bg-sky-600 font-bold" : ""
+				}
+			>
+				<li>
+					<MdPayments />
+					Track
+				</li>
+			</NavLink>
 		</ul>
 	)
 }
